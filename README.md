@@ -3,6 +3,9 @@
 ### Description
 Test task to implement a simple chat based on Angular 10 + Socket.io + Node + Express + LokiJS
 
+![image](./assets/screen_001.png "Entrance")
+![image](./assets/screen_002.png "Entrance")
+
 ### Running
 To run the project you will need to follow these steps:
 1. Front side: `cd public` --> `npm i` --> `npm start`
