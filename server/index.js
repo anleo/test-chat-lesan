@@ -26,7 +26,6 @@ io.on('connection', (socket) => {
 	// set DB emmiter functions
 	const emitMsgs = () => {
 		const data = messages.find({}).map((msg) => {
-			console.log('[msg]: ', msg)
 			return {
 				user: msg.user,
 				msg: msg.msg,
@@ -40,7 +39,7 @@ io.on('connection', (socket) => {
 
 	const emitDb = () => {
 		let data = users.find({}).map(usr => usr.name);
-		socket.emit(pubUser, data);
+		io.emit(pubUser, data);
 	};
 
 	// set DB emmiters

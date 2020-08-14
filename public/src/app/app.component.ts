@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SocketService} from "./services/socket.service";
 import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 import {CookieService} from "ngx-cookie-service";
+import set = Reflect.set;
 
 @Component({
 	selector: 'app-root',
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit {
 		if (this.user) {
 			this.socket.setUser(this.user);
 			this.showNameInput = false;
-			this.socket.getAll();
+			setTimeout(() => this.socket.getAll(), 10);
 			setTimeout(() => this.scrollBottom(), 300);
 			this.focus();
 			return;
