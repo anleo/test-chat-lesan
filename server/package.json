@@ -1,0 +1,19 @@
+{
+  "name": "anleo-test-chat",
+  "version": "1.0.0",
+  "description": "Simple chat based on node + express + scoket.io + lokijs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Andrii Leontiev<skaliozz@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "lokijs": "^1.5.10",
+    "socket.io": "^2.3.0"
+  }
+}

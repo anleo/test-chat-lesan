@@ -1,0 +1,127 @@
+<div class="wrapper">
+	<div class="name-input"
+	     *ngIf="showNameInput">
+		<form class="user-input-form"
+		      (submit)="setUser()">
+			<span class="material-icons login">login</span>
+
+			<h1>
+				Set your name
+			</h1>
+
+			<mat-form-field>
+				<mat-label>
+					User name
+				</mat-label>
+
+				<div class="input-wrapper">
+					<input
+							maxlength="20"
+							matInput
+							#inputName
+							autocomplete="off"
+							[(ngModel)]="userForm.name"
+							name="name"
+							placeholder="Set your username"
+					>
+
+					<button mat-flat-button
+					        type="submit"
+					        color="primary"
+					        [disabled]="!userForm?.name"
+					>
+						Enter
+					</button>
+				</div>
+			</mat-form-field>
+		</form>
+	</div>
+
+	<div class="chat-wrapper"
+	     *ngIf="!showNameInput">
+		<div class="title">
+			<div class="text">
+				<div class="box"></div>
+				Anleo's cozy place to chat
+			</div>
+
+			<div class="menu">
+				<span class="material-icons"
+				      (click)="exit()"
+				      matTooltip="Exit"
+				>power_settings_new</span>
+			</div>
+		</div>
+
+		<div class="top">
+			<div class="left">
+				<h4>
+					Messages
+				</h4>
+
+				<div class="messages-wrapper" #messageWrapper>
+					<div class="message" *ngFor="let msg of (msgs$ | async)">
+						<span class="date">[{{msg?.date | date:'mediumTime'}}]</span>
+						<span class="name"
+						      [ngClass]="{you: msg?.user === user}"
+						      (dblclick)="setPointing(msg?.user)"
+						>
+						{{msg?.user === user ? msg?.user + ' (you)' : msg?.user}}:
+					</span>
+						<span class="text" *ngIf="!msg?.action">{{msg?.msg}}</span>
+						<span class="text action" *ngIf="msg?.action">{{msg?.action}} the chat</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="right">
+				<h4>
+					Users
+				</h4>
+
+				<div class="user-list"
+				     *ngFor="let usr of (users$ | async)"
+				>
+					<span [ngClass]="{'your-name': usr === user}">
+						{{usr}}
+					</span>
+
+					<span class="you"
+					      *ngIf="usr === user"
+					>
+						(you)
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="bottom">
+
+			<form class="message-input-form"
+			      (submit)="sendMessage()">
+				<mat-form-field appearance="outline">
+					<div class="input-wrapper">
+						<input
+								matInput
+								maxlength="80"
+								autocomplete="off"
+								autofocus="autofocus"
+								[(ngModel)]="form.msg"
+								name="name"
+								#input
+								placeholder="Message"
+						>
+
+						<button mat-flat-button
+						        type="submit"
+						        color="primary"
+						        [disabled]="!form?.msg"
+						>
+							Enter
+						</button>
+					</div>
+				</mat-form-field>
+			</form>
+		</div>
+	</div>
+</div>

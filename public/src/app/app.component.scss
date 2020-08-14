@@ -1,0 +1,262 @@
+@mixin show {
+	position: relative;
+	opacity: 0;
+	animation: fadeIn .6s;
+	animation-delay: .3s;
+	animation-fill-mode: forwards;
+	transform: translateY(-10em);
+}
+
+@mixin shadow {
+	box-shadow: 0 0 3em -2em #000;
+}
+
+@mixin superBg {
+	background: rgb(255, 121, 0);
+	background: linear-gradient(90deg, rgba(255, 121, 0, 1) 0%, rgba(255, 102, 0, 1) 100%);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10em);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-grow: 1;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	max-width: 80vW;
+	margin: auto;
+}
+
+.name-input {
+	display: flex;
+	justify-content: center;
+	padding-top: 2em;
+	width: 60%;
+	height: 60%;
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	align-items: center;
+
+	@include shadow();
+	@include superBg();
+	@include show();
+
+	.login {
+		font-size: 12em;
+	}
+
+	form.user-input-form {
+		width: 80%;
+		color: #fff;
+
+		mat-form-field {
+			width: 100%;
+
+			.input-wrapper {
+				display: flex;
+				flex-flow: row;
+				justify-content: space-between;
+
+				button {
+					min-width: auto;
+				}
+			}
+		}
+	}
+}
+
+.chat-wrapper {
+	@include show();
+
+	display: flex;
+	flex-flow: column;
+	flex-grow: 1;
+	width: 100%;
+	height: 100%;
+	padding: 1em;
+	box-sizing: border-box;
+
+	.title {
+		margin-bottom: 1em;
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+		font-weight: bold;
+		justify-content: space-between;
+
+		.text {
+			display: flex;
+			flex-flow: row;
+			align-items: center;
+		}
+
+		.box {
+			display: flex;
+			width: 1em;
+			height: 1em;
+			margin-right: .5em;
+			background-color: #f60;
+			content: '';
+		}
+
+		.menu {
+			display: flex;
+			align-self: flex-end;
+			cursor: pointer;
+
+			&:hover {
+				color: #ff6600;
+			}
+		}
+	}
+
+	.top {
+		margin-bottom: 1em;
+		display: flex;
+		flex-grow: 1;
+		width: 100%;
+		flex-shrink: 1;
+		max-height: 86vH;
+
+		.left {
+			display: flex;
+			width: 80%;
+			flex-shrink: 1;
+			padding: 1em;
+			@include shadow();
+			position: relative;
+			z-index: 5;
+			flex-flow: column;
+			box-sizing: border-box;
+			overflow: hidden;
+
+			.messages-wrapper {
+				display: flex;
+				flex-flow: column;
+				flex-grow: 1;
+				overflow: auto;
+			}
+
+			.message {
+				margin-bottom: .5em;
+
+				.date {
+					opacity: .5;
+				}
+
+				.name {
+					font-weight: bold;
+					cursor: pointer;
+
+					&.you {
+						color: #f60;
+					}
+				}
+
+				.text {
+					&.action {
+						opacity: .5;
+					}
+				}
+
+				span {
+					padding-right: .5em;
+				}
+			}
+		}
+
+		.right {
+			transform: scaleY(.96);
+			padding: 1em;
+			display: flex;
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex-flow: column;
+			border-radius: 0 .5em .5em 0;
+			background-color: rgb(244, 244, 244);
+			background: linear-gradient(180deg, rgba(244, 244, 244, 1) 0%, rgba(228, 223, 215, 1) 100%);
+		}
+
+		.left, .right {
+			h4 {
+				opacity: .3;
+				margin: 0 0 1em;
+			}
+		}
+
+		.user-list {
+			vertical-align: middle;
+
+			span {
+				vertical-align: middle;
+			}
+
+			.you {
+				opacity: .3;
+			}
+
+			.your-name {
+				color: #f60;
+			}
+		}
+	}
+
+	.bottom {
+		display: flex;
+		flex-shrink: 0;
+		width: 80%;
+
+		form.message-input-form {
+			color: #fff;
+			border-radius: .5em;
+			width: 100%;
+
+			@include superBg();
+
+			mat-form-field {
+				width: 100%;
+
+				::ng-deep & > .mat-form-field-wrapper {
+					padding-bottom: 0 !important;
+					margin: 0;
+
+					.mat-form-field-flex {
+						margin-top: 0;
+						padding: 0 1em;
+
+						.mat-form-field-outline {
+							display: none;
+						}
+					}
+
+					.mat-form-field-infix {
+						border-top: none;
+					}
+				}
+
+				.input-wrapper {
+					display: flex;
+					flex-flow: row;
+					justify-content: space-between;
+					color: #fff;
+
+					input {
+						font-size: 1.2em;
+					}
+				}
+			}
+		}
+	}
+}
+
